@@ -445,8 +445,8 @@ export default function AdminPanel() {
 /* STYLES */
 const styles = {
   container: {
-    marginLeft: "270px",
-    width: "calc(100% - 270px)",
+    marginLeft: "280px", // Changed from 270px to 280px
+    width: "calc(100% - 280px)",
     minHeight: "100vh",
     padding: "40px",
     fontFamily: "'Poppins', sans-serif",

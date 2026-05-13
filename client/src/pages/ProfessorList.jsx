@@ -192,7 +192,7 @@ export default function ProfessorList() {
               <h2 style={styles.name}>{selectedProfessor.name}</h2>
               <p style={styles.designation}>{selectedProfessor.designation}</p>
 
-              
+
             </div>
 
             {/* RIGHT SIDE */}
@@ -279,7 +279,9 @@ function InfoRow({ label, value }) {
 /* 🔥 STYLES */
 const styles = {
   container: {
-    marginLeft: "270px",
+    marginLeft: "280px", // Changed from 270px to 280px
+    width: "calc(100% - 280px)",
+    minHeight: "100vh",
     padding: "30px",
     background: "#f1f5f9",
     minHeight: "100vh"

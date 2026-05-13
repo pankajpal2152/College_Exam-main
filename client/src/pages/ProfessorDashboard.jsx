@@ -16,22 +16,34 @@ import {
 export default function ProfessorDashboard() {
   const navigate = useNavigate();
 
-  const prof = JSON.parse(
-    localStorage.getItem("professor")
-  );
+  // Safely parse local storage
+  const profStr = localStorage.getItem("professor");
+  const prof = profStr ? JSON.parse(profStr) : null;
 
   const [papers, setPapers] = useState([]);
 
   useEffect(() => {
+    // If no professor is logged in, redirect to login page instantly
+    if (!prof || !prof.id) {
+      navigate("/professor-login");
+      return;
+    }
+
     axios
-  .get(`http://localhost:5000/professor/assigned/${prof.id}`)
-      .then((res) => setPapers(res.data));
-  }, [prof.id]);
+      .get(`http://localhost:5000/professor/assigned/${prof.id}`)
+      .then((res) => setPapers(res.data))
+      .catch((err) => console.log("Error fetching papers:", err));
+  }, [navigate, prof]);
 
   const handleLogout = () => {
     localStorage.removeItem("professor");
     navigate("/professor-login");
   };
+
+  // Prevent rendering the page and crashing if prof is null
+  if (!prof) {
+    return null; 
+  }
 
   return (
     <div style={styles.container}>
@@ -187,6 +199,8 @@ export default function ProfessorDashboard() {
 
 const styles = {
   container: {
+    marginLeft: "280px", // Changed from 270px to 280px
+    width: "calc(100% - 280px)",
     minHeight: "100vh",
     padding: "25px",
     background:

@@ -359,6 +359,8 @@ export default function ReviewMarks() {
 
 const styles = {
   container: {
+    marginLeft: "280px", // Changed from 270px to 280px
+    width: "calc(100% - 280px)",
     minHeight: "100vh",
     background:
       "linear-gradient(135deg,#e0f2fe,#f8fafc)",
